@@ -1,0 +1,11 @@
+<% content_for :title, "New map point" %>
+
+<h1>New map point</h1>
+
+<%= render "form", map_point: @map_point %>
+
+<br>
+
+<div>
+  <%= link_to "Back to map points", map_points_path %>
+</div>

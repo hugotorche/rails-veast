@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Map points" %>
+
+<h1>Map points</h1>
+
+<div id="map_points">
+  <% @map_points.each do |map_point| %>
+    <%= render map_point %>
+    <p>
+      <%= link_to "Show this map point", map_point %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New map point", new_map_point_path %>
