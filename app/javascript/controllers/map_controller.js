@@ -31,10 +31,11 @@ export default class extends Controller {
   }
 
   configureIconPaths() {
+    const iconBase = '<%= asset_path("leaflet/") %>';
     this.L.Icon.Default.mergeOptions({
-      iconUrl: '<%= asset_path("leaflet/marker-icon.png") %>',
-      iconRetinaUrl: '<%= asset_path("leaflet/marker-icon-2x.png") %>',
-      shadowUrl: '<%= asset_path("leaflet/marker-shadow.png") %>'
+      iconUrl: `${iconBase}marker-icon.png`,
+      iconRetinaUrl: `${iconBase}marker-icon-2x.png`,
+      shadowUrl: `${iconBase}marker-shadow.png`
     });
   }
 
