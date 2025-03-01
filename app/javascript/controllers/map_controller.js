@@ -3,8 +3,11 @@ import "leaflet-css"
 
 export default class extends Controller {
   static values = {
-    center: { type: Array, default: [51.505, -0.09] },
-    zoom: { type: Number, default: 13 }
+    center: {
+      type: Array,
+      default: [0, 0]
+    },
+    zoom: { type: Number, default: 2 }
   }
 
   async connect() {
