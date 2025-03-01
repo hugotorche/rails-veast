@@ -17,6 +17,27 @@ export default class extends Controller {
     this.registerCleanup()
   }
 
+  // Add new method for markers
+  addMarkers() {
+    this.markersValue.forEach(markerData => {
+      const marker = this.L.marker(markerData.coords)
+        .addTo(this.map)
+        .bindPopup(markerData.popup || '');
+
+      if (markerData.openPopup) {
+        marker.openPopup();
+      }
+    });
+  }
+
+  configureIconPaths() {
+    this.L.Icon.Default.mergeOptions({
+      iconUrl: '<%= asset_path("leaflet/marker-icon.png") %>',
+      iconRetinaUrl: '<%= asset_path("leaflet/marker-icon-2x.png") %>',
+      shadowUrl: '<%= asset_path("leaflet/marker-shadow.png") %>'
+    });
+  }
+
   async initializeLeaflet() {
     const { default: L } = await import('leaflet')
     this.L = L

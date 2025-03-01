@@ -7,3 +7,13 @@
 .leaflet-tile-container img {
 image-rendering: crisp-edges; /* Optimize low-zoom tiles */
 }
+
+.leaflet-map-container {
+  height: 80vh !important;
+  min-height: 400px;
+  background: #f8f9fa;
+}
+
+.leaflet-marker-icon {
+  filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+}
