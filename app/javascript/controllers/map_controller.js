@@ -24,9 +24,9 @@ export default class extends Controller {
 
   configureIconDefaults() {
     this.leaflet.Icon.Default.mergeOptions({
-      iconUrl: '/assets/leaflet/marker-icon.png',
-      iconRetinaUrl: '/assets/leaflet/marker-icon-2x.png',
-      shadowUrl: '/assets/leaflet/marker-shadow.png'
+      iconUrl: '/assets/images/leaflet/marker-icon.png',
+      iconRetinaUrl: '/assets/images/leaflet/marker-icon-2x.png',
+      shadowUrl: '/assets/images/leaflet/marker-shadow.png'
     });
   }
 
@@ -69,6 +69,5 @@ export default class extends Controller {
 
   handleMarkerDrag = (e) => {
     const marker = e.target;
-    // Update curve calculation logic
   };
 }
