@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus"
-import "leaflet-css"
+import { Controller } from "@hotwired/stimulus";
+import "leaflet-css";
 
 export default class extends Controller {
   static values = {
@@ -12,44 +12,15 @@ export default class extends Controller {
 
   async connect() {
     await this.initializeLeaflet()
-    this.configureIconPaths()
     this.createBaseMap()
+    this.addMarker()
     this.registerCleanup()
-  }
-
-  // Add new method for markers
-  addMarkers() {
-    this.markersValue.forEach(markerData => {
-      const marker = this.L.marker(markerData.coords)
-        .addTo(this.map)
-        .bindPopup(markerData.popup || '');
-
-      if (markerData.openPopup) {
-        marker.openPopup();
-      }
-    });
-  }
-
-  configureIconPaths() {
-    const iconBase = '<%= asset_path("leaflet/") %>';
-    this.L.Icon.Default.mergeOptions({
-      iconUrl: `${iconBase}marker-icon.png`,
-      iconRetinaUrl: `${iconBase}marker-icon-2x.png`,
-      shadowUrl: `${iconBase}marker-shadow.png`
-    });
   }
 
   async initializeLeaflet() {
     const { default: L } = await import('leaflet')
     this.L = L
-    delete L.Icon.Default.prototype._getIconUrl
-  }
-
-  configureIconPaths() {
-    this.L.Icon.Default.mergeOptions({
-      iconUrl: '<%= asset_path("leaflet/marker-icon.png") %>',
-      iconShadowUrl: '<%= asset_path("leaflet/marker-shadow.png") %>'
-    })
+    //delete L.Icon.Default.prototype._getIconUrl
   }
 
   createBaseMap() {
@@ -64,6 +35,36 @@ export default class extends Controller {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       maxZoom: 19
     }).addTo(this.map)
+  }
+
+  addMarker() {
+    var marker1 = this.L.marker([46.2044, 6.1432]).addTo(this.map)
+    .bindPopup('Geneva');
+
+    var marker2 = this.L.marker([55.6761, 12.5683]).addTo(this.map)
+      .bindPopup('Copenhagen');
+
+    var point1 = [55.6761, 12.5683];
+    var point2 = [46.2044, 6.1432];
+
+    var midLat = (point1[0] + point2[0]) / 2;
+    var midLng = (point1[1] + point2[1]) / 2;
+    var offset = 0.7;
+    var ctrlPoint = [midLat + offset, midLng + offset];
+
+    this.L.curve([
+        'M', point1,
+        'Q', ctrlPoint,
+        point2
+    ], {
+        color: 'black',
+        weight: 3,
+        animate: {
+            duration: 2000,
+            iterations: Infinity,
+            easing: 'ease-in-out'
+        }
+    }).addTo(this.map);
   }
 
   registerCleanup() {
