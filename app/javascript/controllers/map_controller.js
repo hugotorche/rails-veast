@@ -13,6 +13,7 @@ export default class extends Controller {
   async connect() {
     await this.initializeLeaflet()
     this.createBaseMap()
+    this.configureIconPaths()
     this.addMarker()
     this.registerCleanup()
   }
@@ -20,7 +21,28 @@ export default class extends Controller {
   async initializeLeaflet() {
     const { default: L } = await import('leaflet')
     this.L = L
-    //delete L.Icon.Default.prototype._getIconUrl
+    delete L.Icon.Default.prototype._getIconUrl
+  }
+
+  configureIconPaths() {
+    this.L.Icon.Default.mergeOptions({
+      iconUrl: new URL(
+        "/assets/images/leaflet/marker-icon.png", 
+        import.meta.url
+      ).href,
+      iconRetinaUrl: new URL(
+        "/assets/images/leaflet/marker-icon-2x.png",
+        import.meta.url
+      ).href,
+      shadowUrl: new URL(
+        "/assets/images/leaflet/marker-shadow.png",
+        import.meta.url
+      ).href,
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
+    });
   }
 
   createBaseMap() {
