@@ -1,73 +1,82 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
+import "leaflet-css"
 
 export default class extends Controller {
   static values = {
-    markers: { type: Array, default: [] },
-    center: { type: Array, default: [0, 0] },
+    center: {
+      type: Array,
+      default: [0, 0]
+    },
     zoom: { type: Number, default: 2 }
   }
 
   async connect() {
-    await this.loadLeaflet();
-    this.initializeMap();
-    this.configureIconDefaults();
-    this.createMapInstance();
-    this.addBaseLayer();
-    this.placeMarkers();
+    await this.initializeLeaflet()
+    this.configureIconPaths()
+    this.createBaseMap()
+    this.registerCleanup()
   }
 
-  async loadLeaflet() {
-    const { default: L } = await import('leaflet');
-    window.L = L;
-    this.leaflet = L;
-  }
-
-  configureIconDefaults() {
-    this.leaflet.Icon.Default.mergeOptions({
-      iconUrl: '/assets/images/leaflet/marker-icon.png',
-      iconRetinaUrl: '/assets/images/leaflet/marker-icon-2x.png',
-      shadowUrl: '/assets/images/leaflet/marker-shadow.png'
-    });
-  }
-
-  createMapInstance() {
-    this.map = this.leaflet.map(this.element, {
-      zoomControl: false,
-      attributionControl: false
-    }).setView(this.centerValue, this.zoomValue);
-
-    this.leaflet.control.zoom({ position: 'topright' }).addTo(this.map);
-  }
-
-  addBaseLayer() {
-    this.leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap',
-      maxZoom: 19
-    }).addTo(this.map);
-  }
-
-  placeMarkers() {
-    this.markersValue.forEach(data => {
-      const marker = this.leaflet.marker(data.coords)
+  // Add new method for markers
+  addMarkers() {
+    this.markersValue.forEach(markerData => {
+      const marker = this.L.marker(markerData.coords)
         .addTo(this.map)
-        .bindPopup(data.popup || '');
+        .bindPopup(markerData.popup || '');
 
-      if (data.draggable) {
-        marker.dragging.enable();
-        marker.on('drag', this.handleMarkerDrag);
+      if (markerData.openPopup) {
+        marker.openPopup();
       }
     });
   }
 
-  disconnect() {
-    if (this.map) {
-      this.map.eachLayer(layer => layer.remove());
-      this.map.off();
-      this.map.remove();
-    }
+  configureIconPaths() {
+    const iconBase = '<%= asset_path("leaflet/") %>';
+    this.L.Icon.Default.mergeOptions({
+      iconUrl: `${iconBase}marker-icon.png`,
+      iconRetinaUrl: `${iconBase}marker-icon-2x.png`,
+      shadowUrl: `${iconBase}marker-shadow.png`
+    });
   }
 
-  handleMarkerDrag = (e) => {
-    const marker = e.target;
-  };
+  async initializeLeaflet() {
+    const { default: L } = await import('leaflet')
+    this.L = L
+    delete L.Icon.Default.prototype._getIconUrl
+  }
+
+  configureIconPaths() {
+    this.L.Icon.Default.mergeOptions({
+      iconUrl: '<%= asset_path("leaflet/marker-icon.png") %>',
+      iconShadowUrl: '<%= asset_path("leaflet/marker-shadow.png") %>'
+    })
+  }
+
+  createBaseMap() {
+    this.map = this.L.map(this.element, {
+      zoomControl: false,
+      attributionControl: false
+    }).setView(this.centerValue, this.zoomValue)
+
+    this.L.control.zoom({ position: 'topright' }).addTo(this.map)
+    
+    this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(this.map)
+  }
+
+  registerCleanup() {
+    this.element.addEventListener('turbo:before-cache', () => {
+      if (this.map) this.map.remove()
+    })
+  }
+
+  disconnect() {
+    if (this.map) {
+      this.map.off()
+      this.map.remove()
+      this.map = null
+    }
+  }
 }
