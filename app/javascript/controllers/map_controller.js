@@ -7,13 +7,12 @@ export default class extends Controller {
       type: Array,
       default: [0, 0]
     },
-    zoom: { type: Number, default: 2 }
+    zoom: { type: Number, default: 5 }
   }
 
   async connect() {
     await this.initializeLeaflet()
     this.createBaseMap()
-    this.configureIconPaths()
     this.addMarker()
     this.registerCleanup()
   }
@@ -22,27 +21,6 @@ export default class extends Controller {
     const { default: L } = await import('leaflet')
     this.L = L
     delete L.Icon.Default.prototype._getIconUrl
-  }
-
-  configureIconPaths() {
-    this.L.Icon.Default.mergeOptions({
-      iconUrl: new URL(
-        "/assets/images/leaflet/marker-icon.png", 
-        import.meta.url
-      ).href,
-      iconRetinaUrl: new URL(
-        "/assets/images/leaflet/marker-icon-2x.png",
-        import.meta.url
-      ).href,
-      shadowUrl: new URL(
-        "/assets/images/leaflet/marker-shadow.png",
-        import.meta.url
-      ).href,
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
-    });
   }
 
   createBaseMap() {
@@ -60,42 +38,26 @@ export default class extends Controller {
   }
 
   addMarker() {
-    var greenIcon = new this.L.Icon({
-      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41]
+    
+    const officeIcon = new this.L.Icon({
+      iconUrl: 'https://img.icons8.com/officexs/16/100-percents.png',
+      iconSize: [16, 16],
     });
 
-    var marker1 = this.L.marker([46.2044, 6.1432], {icon: greenIcon}).addTo(this.map)
+    var bdxMarker = this.L.marker([44.8361, -0.5808], {icon: officeIcon}).addTo(this.map)
+    .bindPopup('Bordeaux');
+
+    var prsMarker = this.L.marker([48.8647, 2.3490], {icon: officeIcon}).addTo(this.map)
+    .bindPopup('Paris');
+
+    var cphMarker = this.L.marker([55.6760, 12.5683], {icon: officeIcon}).addTo(this.map)
+    .bindPopup('Copenhagen');
+
+    var gveMarker = this.L.marker([46.2044, 6.1432], {icon: officeIcon}).addTo(this.map)
     .bindPopup('Geneva');
 
-    var marker2 = this.L.marker([55.6761, 12.5683]).addTo(this.map)
-      .bindPopup('Copenhagen');
-
-    var point1 = [55.6761, 12.5683];
-    var point2 = [46.2044, 6.1432];
-
-    var midLat = (point1[0] + point2[0]) / 2;
-    var midLng = (point1[1] + point2[1]) / 2;
-    var offset = 0.7;
-    var ctrlPoint = [midLat + offset, midLng + offset];
-
-    this.L.curve([
-        'M', point1,
-        'Q', ctrlPoint,
-        point2
-    ], {
-        color: 'black',
-        weight: 3,
-        animate: {
-            duration: 2000,
-            iterations: Infinity,
-            easing: 'ease-in-out'
-        }
-    }).addTo(this.map);
+    var tyoMarker = this.L.marker([35.6528, 139.8394], {icon: officeIcon}).addTo(this.map)
+    .bindPopup('Tokyo');
   }
 
   registerCleanup() {
