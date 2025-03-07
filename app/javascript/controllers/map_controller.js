@@ -21,6 +21,9 @@ export default class extends Controller {
     const { default: L } = await import('leaflet')
     this.L = L
     delete L.Icon.Default.prototype._getIconUrl
+  
+    // Import Leaflet Curve plugin
+    import('@elfalem/leaflet-curve')
   }
 
   createBaseMap() {
@@ -59,22 +62,26 @@ export default class extends Controller {
     var tyoMarker = this.L.marker([35.6528, 139.8394], {icon: officeIcon}).addTo(this.map)
     .bindPopup('Tokyo');
 
-    // Define start and end points
-    var point1 = [55.6761, 12.5683];
-    var point2 = [46.2044, 6.1432];
-    
-    // Create a control point to define the curve
-    var midLat = (point1[0] + point2[0]) / 2;
-    var midLng = (point1[1] + point2[1]) / 2;
-    var offset = 0.7; // Increased offset for more visible curve
-    var ctrlPoint = [midLat + offset, midLng + offset];
-    
-    // Create a curved line using Quadratic Bézier curve command (Q)
-    var curvedPath = this.L.curve([
+      // Define start and end points
+      var point1 = [55.6761, 12.5683];
+      var point2 = [46.2044, 6.1432];
+
+      // Create a control point to define the curve
+      var midLat = (point1[0] + point2[0]) / 2;
+      var midLng = (point1[1] + point2[1]) / 2;
+      var offset = 0.7; // Increased offset for more visible curve
+      var ctrlPoint = [midLat + offset, midLng + offset];
+
+      // Adjust map bounds to ensure curve is visible
+      var bounds = this.L.latLngBounds(point1, point2);
+      this.map.fitBounds(bounds);
+
+      // Create a curved line using Quadratic Bézier curve command (Q)
+      var curvedPath = this.L.curve([
         'M', point1,
         'Q', ctrlPoint,
         point2
-    ], {
+      ], {
         color: 'black',
         weight: 3,
         animate: {
@@ -82,7 +89,7 @@ export default class extends Controller {
             iterations: Infinity,
             easing: 'ease-in-out'
         }
-    }).addTo(this.map);
+      }).addTo(this.map);
   }
 
   registerCleanup() {
