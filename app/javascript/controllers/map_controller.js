@@ -47,49 +47,58 @@ export default class extends Controller {
       iconSize: [16, 16],
     });
 
-    var bdxMarker = this.L.marker([44.8361, -0.5808], {icon: officeIcon}).addTo(this.map)
+    var bdxPoint = [44.8361, -0.5808];
+    var prsPoint = [48.8647, 2.3490];
+    var cphPoint = [55.6760, 12.5683];
+    var gvePoint = [46.2044, 6.1432];
+    var tyoPoint = [35.6528, 139.8394];
+
+    var bdxMarker = this.L.marker(bdxPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Bordeaux');
 
-    var prsMarker = this.L.marker([48.8647, 2.3490], {icon: officeIcon}).addTo(this.map)
+    var prsMarker = this.L.marker(prsPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Paris');
 
-    var cphMarker = this.L.marker([55.6760, 12.5683], {icon: officeIcon}).addTo(this.map)
+    var cphMarker = this.L.marker(cphPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Copenhagen');
 
-    var gveMarker = this.L.marker([46.2044, 6.1432], {icon: officeIcon}).addTo(this.map)
+    var gveMarker = this.L.marker(gvePoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Geneva');
 
-    var tyoMarker = this.L.marker([35.6528, 139.8394], {icon: officeIcon}).addTo(this.map)
+    var tyoMarker = this.L.marker(tyoPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Tokyo');
 
-      // Define start and end points
-      var point1 = [55.6761, 12.5683];
-      var point2 = [46.2044, 6.1432];
+    // Create a polyline
+    var pointList = [cphPoint, gvePoint, tyoPoint];
+    var polyline = this.L.polyline(pointList, {
+      color: 'red',
+      weight: 3,
+      opacity: 0.5
+    });
 
-      // Create a control point to define the curve
-      var midLat = (point1[0] + point2[0]) / 2;
-      var midLng = (point1[1] + point2[1]) / 2;
-      var offset = 0.7; // Increased offset for more visible curve
-      var ctrlPoint = [midLat + offset, midLng + offset];
+    // Add the polyline to the map
+    polyline.addTo(this.map);
 
-      // Adjust map bounds to ensure curve is visible
-      var bounds = this.L.latLngBounds(point1, point2);
-      this.map.fitBounds(bounds);
+    // Define points
+    var point1 = [44.8361, -0.5808]; // Bordeaux
+    var point2 = [48.8647, 2.3490]; // Paris
 
-      // Create a curved line using Quadratic Bézier curve command (Q)
-      var curvedPath = this.L.curve([
-        'M', point1,
-        'Q', ctrlPoint,
-        point2
-      ], {
-        color: 'black',
-        weight: 3,
-        animate: {
-            duration: 2000,
-            iterations: Infinity,
-            easing: 'ease-in-out'
-        }
-      }).addTo(this.map);
+    // Calculate control point
+    var midLat = (point1[0] + point2[0]) / 2;
+    var midLng = (point1[1] + point2[1]) / 2;
+    var offset = 0.5; // Adjust this value to change the curve's steepness
+    var ctrlPoint = [midLat + offset, midLng];
+
+    // Draw the curve
+    var curvedPath = this.L.curve([
+      'M', point1,
+      'Q', ctrlPoint,
+      point2
+    ], {
+      color: 'red',
+      weight: 3,
+      opacity: 0.5
+    }).addTo(this.map);
   }
 
   registerCleanup() {
