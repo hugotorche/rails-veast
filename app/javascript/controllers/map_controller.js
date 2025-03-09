@@ -31,11 +31,12 @@ export default class extends Controller {
     }).setView(this.centerValue, this.zoomValue)
 
     this.L.control.zoom({ position: 'topright' }).addTo(this.map)
-    
-    this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19
-    }).addTo(this.map)
+
+    // Dark-Themed Tile Layer using Stadia Maps provider
+    this.L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 20
+    }).addTo(this.map);
   }
 
   addMarker() {
