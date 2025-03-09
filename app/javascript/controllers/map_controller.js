@@ -55,8 +55,14 @@ export default class extends Controller {
     var bdxMarker = this.L.marker(bdxPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Bordeaux');
 
+    const mapElement = document.getElementById('map-container');
+    const src = mapElement.dataset.popImg;
+    const popupContent = document.createElement("div");
+    popupContent.innerHTML = "<img src='" + src + "' style='width: 150px; height: auto;'><br>"
+                              + "<a target='_blank' href='" + src + "'>See the image</a>";
+
     var prsMarker = this.L.marker(prsPoint, {icon: officeIcon}).addTo(this.map)
-    .bindPopup('Paris');
+        .bindPopup(popupContent, { maxWidth: "auto" });
 
     var cphMarker = this.L.marker(cphPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Copenhagen');
@@ -94,8 +100,8 @@ export default class extends Controller {
       'Q', ctrlPoint,
       point2
     ], {
-      color: 'red',
-      weight: 3,
+      color: '#ff9999',
+      weight: 2,
       opacity: 0.5
     }).addTo(this.map);
   }
