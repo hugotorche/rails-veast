@@ -8,3 +8,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "leaflet" # @1.9.4
 pin "leaflet-providers" # @2.0.0
 pin "leaflet-css" # @0.1.0
+pin "@elfalem/leaflet-curve" #@0.9.2

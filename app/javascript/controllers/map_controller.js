@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import "leaflet-css";
+import('@elfalem/leaflet-curve');
 
 export default class extends Controller {
   static values = {
@@ -21,9 +22,6 @@ export default class extends Controller {
     const { default: L } = await import('leaflet')
     this.L = L
     delete L.Icon.Default.prototype._getIconUrl
-  
-    // Import Leaflet Curve plugin
-    import('@elfalem/leaflet-curve')
   }
 
   createBaseMap() {
