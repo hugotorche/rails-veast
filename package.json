@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@elfalem/leaflet-curve": "^0.9.2"
+  }
+}
