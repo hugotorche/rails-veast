@@ -8,7 +8,7 @@ export default class extends Controller {
       type: Array,
       default: [0, 0]
     },
-    zoom: { type: Number, default: 5 }
+    zoom: { type: Number, default: 3 }
   }
 
   async connect() {
@@ -42,7 +42,7 @@ export default class extends Controller {
   addMarker() {
     
     const officeIcon = new this.L.Icon({
-      iconUrl: 'https://img.icons8.com/officexs/16/100-percents.png',
+      iconUrl: 'https://img.icons8.com/officexs/12/100-percents.png',
       iconSize: [16, 16],
     });
 
@@ -70,8 +70,8 @@ export default class extends Controller {
     // Create a polyline
     var pointList = [cphPoint, gvePoint, tyoPoint];
     var polyline = this.L.polyline(pointList, {
-      color: 'red',
-      weight: 3,
+      color: '#ff9999',
+      weight: 2,
       opacity: 0.5
     });
 
