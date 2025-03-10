@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 import "leaflet-css";
 import('@elfalem/leaflet-curve');
-import { rf } from './utils/read_file.js';
+//import { rf } from './utils/read_file.js';
 
 export default class extends Controller {
   static values = {
@@ -73,6 +73,14 @@ export default class extends Controller {
 
     var tyoMarker = this.L.marker(tyoPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Tokyo');
+
+    var seoMarker = this.L.marker([37.532600, 127.024612], {icon: officeIcon}).addTo(this.map);
+
+    fetch('/utils/pop_up.html')
+      .then(response => response.text())
+      .then(htmlContent => {
+        seoMarker.bindPopup(htmlContent);
+      });
 
     // Create a polyline
     var pointList = [cphPoint, gvePoint, tyoPoint];
