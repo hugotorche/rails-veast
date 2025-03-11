@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :map_points
   # get "home/index"
-  get "home/log"
+  get "home/kit"
   get "home/map"
+  get "home/log"
   root "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
