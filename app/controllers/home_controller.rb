@@ -3,6 +3,6 @@ class HomeController < ApplicationController
   end
   def map
   end
-  def about
+  def log
   end
 end
