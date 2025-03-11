@@ -7,6 +7,7 @@
     <% end %>
 </head>
 <body>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js'></script>
     <div data-controller="log" class="container">
         <div class="wrapper fixed-wrapper">
         </br></br></br>
@@ -22,15 +23,23 @@
                             <span class="title">.zsh</span>
                         </div>
                         <div class="message">
-                            <span class='prompt'><span class='sub'>Sub</span><span class="macro"> profile()</span>
+                            <span class='prompt'><span class='user'>{{ common.alias }}</span><span class="at">@</span><span
+                                    class="path">/home/{{ common.first_name|lower }}{{ common.last_name|lower }}/</span>><span
+                                    class="caret">$</span></span>
                             <span class="typed"></span>
-                            <form><span class="sub">End Sub</span>&nbsp;<input type="text" name="response"/></form>
+                            <form>><span class="caret">$</span>&nbsp;<input type="text" name="response"/></form>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <script>
+    var typed = new Typed('#typed', {
+        stringsElement: '#typed-strings'
+    });
+    </script>
 </body>
 </html>
 

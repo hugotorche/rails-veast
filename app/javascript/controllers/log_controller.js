@@ -1,12 +1,13 @@
 import { Controller } from '@hotwired/stimulus';
+import Typed from 'typed.js';
 
 export default class extends Controller {
   connect() {
-    $(this.function());
+    this.initTyped();
   }
 
-  function() {
-    $(".typed").typed({
+  initTyped() {
+    new Typed('.typed', {
       strings: [
         "<br/>" +
         "' skills: data science, finance, information systems<br/> ^100" +
@@ -15,23 +16,21 @@ export default class extends Controller {
         "' languages: french, english, spanish, portuguese <br/>" +
         "' software: microsoft package, sap, jupyter, sublime text, postgres <br/>" +
         "' hobbies: tennis, mountains, running, juggling, reading<br/> ^300" +
-        "' status: academic exchange abroad<br/> ^100"/*
-        "><span class='caret'>$</span> <a href='/timeline'>timeline</a> <a href='http://www.github.com/crearo/'>github</a> <a href='http://in.linkedin.com/in/bhardwajrish/'>linkedin</a> <a href='http://bhardwajrish.blogspot.com/'>blog</a><br/>"*/
+        "' status: academic exchange abroad<br/> ^100"
       ],
       showCursor: true,
       cursorChar: '_',
       autoInsertCss: true,
-      typeSpeed: 0.001,
+      typeSpeed: 30, // Adjusted type speed
       startDelay: 50,
       loop: false,
-      showCursor: false,
-      onStart: $('.message form').hide(),
-      onStop: $('.message form').show(),
-      onTypingResumed: $('.message form').hide(),
-      onTypingPaused: $('.message form').show(),
-      onComplete: $('.message form').show(),
-      onStringTyped: function(pos, self) {$('.message form').show();},
+      onStart: () => $('.message form').hide(),
+      onStop: () => $('.message form').show(),
+      onTypingResumed: () => $('.message form').hide(),
+      onTypingPaused: () => $('.message form').show(),
+      onComplete: () => $('.message form').show(),
+      onStringTyped: (pos, self) => {$('.message form').show();}
     });
-    $('.message form').hide()
+    $('.message form').hide();
   };
 }
