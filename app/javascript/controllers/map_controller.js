@@ -71,15 +71,12 @@ export default class extends Controller {
     var gveMarker = this.L.marker(gvePoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Geneva');
 
-    var tyoMarker = this.L.marker(tyoPoint, {icon: officeIcon}).addTo(this.map)
-    .bindPopup('Tokyo');
-
-    var seoMarker = this.L.marker([37.532600, 127.024612], {icon: officeIcon}).addTo(this.map);
+    var tyoMarker = this.L.marker(tyoPoint, {icon: officeIcon}).addTo(this.map);
 
     fetch('/utils/pop_up.html')
       .then(response => response.text())
       .then(htmlContent => {
-        seoMarker.bindPopup(htmlContent);
+        tyoMarker.bindPopup(htmlContent);
       });
 
     // Create a polyline
