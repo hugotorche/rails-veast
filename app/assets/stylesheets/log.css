@@ -120,14 +120,22 @@
     top: 0;
     opacity: 0.3;
   }
+
   #terminal .terminal {
-    position: relative;
+    position: absolute; /* Change from relative to absolute */
     background: #313831;
-    width: 100%;
+    width: 50%;
     height: 450px;
     border-radius: 8px;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
     margin: auto;
+    justify-content: center;
+  }
+  .draggable-handle {
+    cursor: grab;
+  }
+  .draggable-handle:active {
+    cursor: grabbing;
   }
   #terminal .terminal .window-title {
     background: #73787C;
