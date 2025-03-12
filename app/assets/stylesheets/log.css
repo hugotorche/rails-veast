@@ -181,13 +181,18 @@
   #terminal .terminal .prompt {
     font-size: 98%;
   }
-  #terminal .terminal .sub {
-    color: #ffffff;
+  #terminal .terminal .user {
+    color: #ea7e7d;
     letter-spacing: 0.002em;
     padding-right: 3px;
   }
-  #terminal .terminal .macro {
-    color: #ffffff;
+  #terminal .terminal .at {
+    color: #e8d880;
+    padding-right: 2px;
+  }
+  #terminal .terminal .path {
+    color: #7ecdcb;
+    letter-spacing: 0.002em;
     padding-right: 2px;
   }
   #terminal .terminal .caret {
@@ -195,7 +200,7 @@
   }
   #terminal .message {
     position: relative;
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.75);
     font-family: "Source Code Pro", monospace;
     width: 95%;
     margin: auto;
@@ -214,16 +219,22 @@
     border-bottom: 1px dotted rgba(255, 255, 255, 0.75);
   }
   #terminal .message form input {
+    color: rgba(255, 255, 255, 0.75);
     background: transparent;
     border: none;
     outline: none;
     caret-color: #50cd70;
-  }
-  #terminal .message form input:focus {
-    color: #ffffff;
+    font-size: 100%;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.045em;
+    margin-bottom: 1em;
+    margin-left: 7px;
   }
   #terminal .message .typed-cursor {
     color: #ffffff;
+    position: absolute;
+    margin-left: 5px;
   }
   #terminal a {
     color: #ffffff;
