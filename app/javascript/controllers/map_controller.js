@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import "leaflet-css";
-import('@elfalem/leaflet-curve');
+//import "leaflet-curve";
 //import { rf } from './utils/read_file.js';
 
 export default class extends Controller {
