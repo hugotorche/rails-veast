@@ -23,7 +23,7 @@ export default class extends Controller {
       showCursor: false,
       cursorChar: '_',
       autoInsertCss: true,
-      typeSpeed: 10,
+      typeSpeed: 50,
       startDelay: 50,
       loop: false,
       onStart: () => $('.message form').hide(),
@@ -39,38 +39,44 @@ export default class extends Controller {
   makeTerminalDraggable() {
     const terminal = this.terminalTarget;
     const handle = terminal.querySelector(".draggable-handle");
-
+  
     if (!handle) {
       console.error("Draggable handle not found!"); // Debugging log
       return;
     }
-
-    let offsetX = 0, offsetY = 0, isDragging = false;
-
-    handle.addEventListener("mousedown", (e) => {
-      console.log("Drag started"); // Debugging log
-      isDragging = true;
+  
+    let offsetX, offsetY;
+  
+    handle.addEventListener('mousedown', startDrag);
+    document.addEventListener('mouseup', stopDrag);
+  
+    function startDrag(e) {
+      e.preventDefault();
       offsetX = e.clientX - terminal.offsetLeft;
       offsetY = e.clientY - terminal.offsetTop;
-      handle.classList.add("dragging");
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (isDragging) {
-        const x = e.clientX - offsetX;
-        const y = e.clientY - offsetY;
-
-        terminal.style.left = `${x}px`;
-        terminal.style.top = `${y}px`;
-      }
-    });
-
-    document.addEventListener("mouseup", () => {
-      if (isDragging) {
-        console.log("Drag stopped"); // Debugging log
-      }
-      isDragging = false;
-      handle.classList.remove("dragging");
-    });
+      document.addEventListener('mousemove', drag);
+    }
+  
+    function drag(e) {
+      e.preventDefault();
+      const x = e.clientX - offsetX;
+      const y = e.clientY - offsetY;
+  
+      // Prevent moving outside the viewport
+      const maxX = window.innerWidth - terminal.offsetWidth;
+      const maxY = window.innerHeight - terminal.offsetHeight;
+      const minX = 0;
+      const minY = 0;
+  
+      const newX = Math.min(Math.max(x, minX), maxX);
+      const newY = Math.min(Math.max(y, minY), maxY);
+  
+      terminal.style.left = `${newX}px`;
+      terminal.style.top = `${newY}px`;
+    }
+  
+    function stopDrag() {
+      document.removeEventListener('mousemove', drag);
+    }
   }
 }

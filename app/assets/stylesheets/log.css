@@ -122,7 +122,7 @@
   }
 
   #terminal .terminal {
-    position: absolute; /* Change from relative to absolute */
+    position: absolute; /* Ensure this is set */
     background: #313831;
     width: 50%;
     height: 450px;
@@ -131,6 +131,7 @@
     margin: auto;
     justify-content: center;
   }
+
   .draggable-handle {
     cursor: grab;
   }
