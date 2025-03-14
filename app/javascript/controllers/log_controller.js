@@ -37,8 +37,8 @@ export default class extends Controller {
   };
 
   makeTerminalDraggable() {
-    const terminal = this.terminalTarget;
-    const handle = terminal.querySelector(".draggable-handle");
+    const terminalContainer = this.terminalTarget; // Use terminalContainer instead
+    const handle = terminalContainer.querySelector(".draggable-handle");
   
     if (!handle) {
       console.error("Draggable handle not found!"); // Debugging log
@@ -52,8 +52,8 @@ export default class extends Controller {
   
     function startDrag(e) {
       e.preventDefault();
-      offsetX = e.clientX - terminal.offsetLeft;
-      offsetY = e.clientY - terminal.offsetTop;
+      offsetX = e.clientX - terminalContainer.offsetLeft;
+      offsetY = e.clientY - terminalContainer.offsetTop;
       document.addEventListener('mousemove', drag);
     }
   
@@ -63,16 +63,17 @@ export default class extends Controller {
       const y = e.clientY - offsetY;
   
       // Prevent moving outside the viewport
-      const maxX = window.innerWidth - terminal.offsetWidth;
-      const maxY = window.innerHeight - terminal.offsetHeight;
+      const maxX = window.innerWidth - terminalContainer.offsetWidth;
+      const maxY = window.innerHeight - terminalContainer.offsetHeight;
       const minX = 0;
       const minY = 0;
   
       const newX = Math.min(Math.max(x, minX), maxX);
       const newY = Math.min(Math.max(y, minY), maxY);
   
-      terminal.style.left = `${newX}px`;
-      terminal.style.top = `${newY}px`;
+      terminalContainer.style.left = `${newX}px`;
+      terminalContainer.style.top = `${newY}px`;
+      terminalContainer.style.position = 'absolute'; // Ensure absolute positioning
     }
   
     function stopDrag() {
