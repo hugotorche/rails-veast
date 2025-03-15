@@ -1,5 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import Typed from "typed.js";
+import Sortable from "sortablejs";
 
 export default class extends Controller {
   static targets = ["terminal"];
@@ -7,6 +8,7 @@ export default class extends Controller {
   connect() {
     this.initTyped();
     this.makeTerminalDraggable();
+    this.makeTerminalsSortable();
   }
 
   initTyped() {
@@ -79,5 +81,13 @@ export default class extends Controller {
     function stopDrag() {
       document.removeEventListener('mousemove', drag);
     }
+  }
+
+  makeTerminalsSortable() {
+    const terminalsContainer = document.getElementById('terminal');
+    Sortable.create(terminalsContainer, {
+      handle: '.draggable-handle',
+      animation: 150,
+    });
   }
 }

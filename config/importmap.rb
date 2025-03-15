@@ -12,3 +12,4 @@ pin "chart.js" # @4.4.8
 pin "@kurkle/color", to: "@kurkle--color.js" # @0.3.4
 pin "typed.js" # @2.1.0
 pin "leaflet-curve", to: "https://ga.jspm.io/npm:leaflet-curve@1.0.0/dist/leaflet-curve.js"
+pin "sortablejs" # @1.15.6
