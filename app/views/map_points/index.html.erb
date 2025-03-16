@@ -24,7 +24,7 @@
           <td><%= map_point.start_date %></td>
           <td><%= map_point.end_date %></td>
           <td><%= link_to 'Edit', edit_map_point_path(map_point), class: "btn btn-outline-primary btn-sm" %></td>
-          <td><%= link_to 'Delete', map_point, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+          <td><%= link_to 'Delete', map_point, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
         </tr>
       <% end %>
     </tbody>
