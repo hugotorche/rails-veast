@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :map_points
   # get "home/index"
-  get "home/kit"
   get "home/map"
   get "home/log"
   root "home#index"

@@ -65,6 +65,6 @@ class MapPointsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def map_point_params
-      params.expect(map_point: [ :country, :city, :date, :object ])
+      params.expect(map_point: [ :country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description ])
     end
 end

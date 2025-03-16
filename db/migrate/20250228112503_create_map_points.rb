@@ -3,8 +3,8 @@ class CreateMapPoints < ActiveRecord::Migration[8.0]
     create_table :map_points do |t|
       t.string :country
       t.string :city
-      t.decimal :latitude
-      t.decimal :longitude
+      t.decimal :latitude, precision: 9, scale: 6
+      t.decimal :longitude, precision: 9, scale: 6
       t.date :start_date
       t.date :end_date
       t.string :short_description
