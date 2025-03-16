@@ -1,12 +1,8 @@
-<% content_for :title, "Editing map point" %>
+<h1>Editing Map Points</h1>
+<br/>
+<%= render 'form', map_point: @map_point %>
 
-<h1>Editing map point</h1>
-
-<%= render "form", map_point: @map_point %>
-
-<br>
-
-<div>
-  <%= link_to "Show this map point", @map_point %> |
-  <%= link_to "Back to map points", map_points_path %>
-</div>
+<br/>
+<%= link_to 'Show', @map_point, class:"btn btn-secondary btn-sm" %>
+<%= link_to 'Delete', @map_point, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+<%= link_to 'Back', map_points_path, class:"btn btn-dark btn-sm" %>
