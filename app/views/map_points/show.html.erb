@@ -1,10 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @map_point %>
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+  <div class="container-fluid">
+    <h1 class="display-5 fw-bold"><%= @map_point.city %>, <%= @map_point.country %></h1>
+    
+    <strong>Latitude: </strong><%= @map_point.latitude %> |  
+    <strong>Longitude: </strong><%= @map_point.longitude %>
+    </br>
+    <strong>Start Date: </strong><%= @map_point.start_date %> |  
+    <strong>End Date: </strong><%= @map_point.end_date %>
 
-<div>
-  <%= link_to "Edit this map point", edit_map_point_path(@map_point) %> |
-  <%= link_to "Back to map points", map_points_path %>
+    <p class="col-md-8 fs-5"><%= @map_point.short_description %></p>
+    <div>
+      <%= link_to "Edit this map point", edit_map_point_path(@map_point), class: "btn btn-secondary" %>
+      <%= link_to "Back to map points", map_points_path, class: "btn btn-secondary" %>
+      </br></br>
+      <%= button_to "Destroy this map point", @map_point, method: :delete, class: "btn btn-outline-danger btn-sm" %>
+    </div>
 
-  <%= button_to "Destroy this map point", @map_point, method: :delete %>
+  </div>
 </div>
+

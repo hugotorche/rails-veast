@@ -2,15 +2,30 @@
 
 <% content_for :title, "Map points" %>
 
-<h1>Map points</h1>
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>City</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th> </th>
+      </tr>
+    </thead>
 
-<div id="map_points">
-  <% @map_points.each do |map_point| %>
-    <%= render map_point %>
-    <p>
-      <%= link_to "Show this map point", map_point %>
-    </p>
-  <% end %>
-</div>
+    <tbody>
+      <% @map_points.each do |map_point| %>
+        <tr>
+          <td><%= link_to map_point.city + ', ' + map_point.country, map_point %></td>
+          <td><%= map_point.latitude %></td>
+          <td><%= map_point.longitude %></td>
+          <td><%= map_point.start_date %></td>
+          <td><%= map_point.end_date %></td>
+          <td><%= link_to 'Delete', map_point, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
 
-<%= link_to "New map point", new_map_point_path %>
+<%= link_to "New map point", new_map_point_path, class: "btn btn-secondary" %>
