@@ -1,5 +1,7 @@
 class MapPointsController < ApplicationController
   before_action :set_map_point, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /map_points or /map_points.json
   def index
@@ -12,7 +14,8 @@ class MapPointsController < ApplicationController
 
   # GET /map_points/new
   def new
-    @map_point = MapPoint.new
+    #@map_point = MapPoint.new
+    @map_point = current_user.map_points.build
   end
 
   # GET /map_points/1/edit
@@ -21,7 +24,8 @@ class MapPointsController < ApplicationController
 
   # POST /map_points or /map_points.json
   def create
-    @map_point = MapPoint.new(map_point_params)
+    #@map_point = MapPoint.new(map_point_params)
+    @map_point = current_user.map_points.build(map_point_params)
 
     respond_to do |format|
       if @map_point.save
@@ -57,6 +61,11 @@ class MapPointsController < ApplicationController
     end
   end
 
+  def correct_user
+    @map_point = current_user.map_points.find_by(id: params[:id])
+    redirect_to map_points_path, notice: "Not Authorized To Edit This Point" if @map_point.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_map_point
@@ -65,6 +74,6 @@ class MapPointsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def map_point_params
-      params.expect(map_point: [ :country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description ])
+      params.expect(map_point: [ :country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description, :user_id ])
     end
 end
