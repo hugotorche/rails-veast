@@ -3,6 +3,8 @@
 <%= render 'form', map_point: @map_point %>
 
 <br/>
-<%= link_to 'Show', @map_point, class:"btn btn-secondary btn-sm" %>
-<%= link_to 'Delete', @map_point, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-<%= link_to 'Back', map_points_path, class:"btn btn-dark btn-sm" %>
+<%= link_to 'Show', @map_point, class:"btn btn-primary" %>
+&nbsp;&nbsp;
+<%= link_to 'Delete', @map_point, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+&nbsp;&nbsp;
+<%= link_to 'Back to Map Points', map_points_path, class:"btn btn-outline-dark" %>
