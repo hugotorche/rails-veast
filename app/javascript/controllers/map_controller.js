@@ -33,8 +33,7 @@ export default class extends Controller {
 
     this.L.control.zoom({ position: 'topright' }).addTo(this.map)
 
-    // Dark-Themed Tile Layer using Stadia Maps provider
-    this.L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+    this.L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 20
     }).addTo(this.map);
@@ -47,6 +46,12 @@ export default class extends Controller {
       iconSize: [16, 16],
     });
 
+    //var bdxPoint = [44.8361, -0.5808];
+    //var prsPoint = [48.8647, 2.3490];
+    //var cphPoint = [55.6760, 12.5683];
+    //var gvePoint = [46.2044, 6.1432];
+    //var tyoPoint = [35.6528, 139.8394];
+
     var bdxPoint = [44.8361, -0.5808];
     var prsPoint = [48.8647, 2.3490];
     var cphPoint = [55.6760, 12.5683];
@@ -55,6 +60,12 @@ export default class extends Controller {
 
     var bdxMarker = this.L.marker(bdxPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Bordeaux');
+
+    console.log('XXXXXXXXXXXXXX');
+    console.log('XXXXXXXXXXXXXX');
+    console.log(mapPoints);
+    console.log('XXXXXXXXXXXXXX');
+    console.log('XXXXXXXXXXXXXX');
 
     const mapElement = document.getElementById('map-container');
     const src = mapElement.dataset.popImg;
