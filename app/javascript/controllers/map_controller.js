@@ -42,30 +42,23 @@ export default class extends Controller {
   addMarker() {
     
     const officeIcon = new this.L.Icon({
-      iconUrl: 'https://img.icons8.com/officexs/12/100-percents.png',
+      iconUrl: 'https://img.icons8.com/small/16/152238/100-percents.png',
       iconSize: [16, 16],
     });
 
-    //var bdxPoint = [44.8361, -0.5808];
+    var bdxPoint = [44.8361, -0.5808];
     //var prsPoint = [48.8647, 2.3490];
     //var cphPoint = [55.6760, 12.5683];
     //var gvePoint = [46.2044, 6.1432];
     //var tyoPoint = [35.6528, 139.8394];
 
-    var bdxPoint = [44.8361, -0.5808];
-    var prsPoint = [48.8647, 2.3490];
-    var cphPoint = [55.6760, 12.5683];
-    var gvePoint = [46.2044, 6.1432];
-    var tyoPoint = [35.6528, 139.8394];
-
     var bdxMarker = this.L.marker(bdxPoint, {icon: officeIcon}).addTo(this.map)
     .bindPopup('Bordeaux');
 
-    console.log('XXXXXXXXXXXXXX');
-    console.log('XXXXXXXXXXXXXX');
-    console.log(mapPoints);
-    console.log('XXXXXXXXXXXXXX');
-    console.log('XXXXXXXXXXXXXX');
+    mapPoints.forEach((point) => {
+      const marker = this.L.marker([point.latitude, point.longitude], { icon: officeIcon }).addTo(this.map);
+      marker.bindPopup(`<strong>${point.country}</strong><br>${point.city}`);
+    });
 
     const mapElement = document.getElementById('map-container');
     const src = mapElement.dataset.popImg;

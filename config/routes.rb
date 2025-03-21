@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :map_points
   # get "home/index"
-  get "home/map"
+  get '/map', to: 'map#index'
   get "home/log"
   root "home#log"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
