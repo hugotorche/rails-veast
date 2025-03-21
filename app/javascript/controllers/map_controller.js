@@ -46,15 +46,6 @@ export default class extends Controller {
       iconSize: [16, 16],
     });
 
-    var bdxPoint = [44.8361, -0.5808];
-    //var prsPoint = [48.8647, 2.3490];
-    //var cphPoint = [55.6760, 12.5683];
-    //var gvePoint = [46.2044, 6.1432];
-    //var tyoPoint = [35.6528, 139.8394];
-
-    var bdxMarker = this.L.marker(bdxPoint, {icon: officeIcon}).addTo(this.map)
-    .bindPopup('Bordeaux');
-
     mapPoints.forEach((point) => {
       const marker = this.L.marker([point.latitude, point.longitude], { icon: officeIcon }).addTo(this.map);
       marker.bindPopup(`<strong>${point.country}</strong><br>${point.city}`);
@@ -66,29 +57,19 @@ export default class extends Controller {
     popupContent.innerHTML = "<img src='" + src + "' style='width: 150px; height: auto;'><br>"
                               + "<a target='_blank' href='" + src + "'>See the image</a>";
 
-    var prsMarker = this.L.marker(prsPoint, {icon: officeIcon}).addTo(this.map)
-        .bindPopup(popupContent, { maxWidth: "auto" });
-
-    var cphMarker = this.L.marker(cphPoint, {icon: officeIcon}).addTo(this.map)
-    .bindPopup('Copenhagen');
-
-    var gveMarker = this.L.marker(gvePoint, {icon: officeIcon}).addTo(this.map)
-    .bindPopup('Geneva');
-
-    var tyoMarker = this.L.marker(tyoPoint, {icon: officeIcon}).addTo(this.map);
-
     fetch('/utils/pop_up.html')
       .then(response => response.text())
       .then(htmlContent => {
         tyoMarker.bindPopup(htmlContent);
       });
+    
+    const sortedPoints = mapPoints.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+    const pointList = sortedPoints.map(point => [point.latitude, point.longitude]);
 
-    // Create a polyline
-    var pointList = [cphPoint, gvePoint, tyoPoint];
-    var polyline = this.L.polyline(pointList, {
-      color: '#ff9999',
+    const polyline = this.L.polyline(pointList, {
+      color: '#B8860B',
       weight: 2,
-      opacity: 0.5
+      opacity: 0.8
     });
 
     // Add the polyline to the map
