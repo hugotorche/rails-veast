@@ -1,7 +1,7 @@
 <% content_for :title, "Map points" %>
 
-<table class="table table-striped table-bordered table-hover">
-    <thead class="table-dark">
+<table class="table table-hover">
+    <thead class="table">
       <tr>
         <th>City</th>
         <th>Latitude</th>
@@ -13,12 +13,16 @@
         <th> </th>
       </tr>
     </thead>
-
-    <tbody>
+    <style>
+  .table-group-divider {
+    border-top: 2px solid #B8860B; /* Thicker golden border */
+  }
+</style>
+    <tbody class="table-group-divider">
       <% @map_points.each do |map_point| %>
         <% if map_point.user == current_user %>
           <tr>
-            <td><%= link_to map_point.city + ', ' + map_point.country, map_point %></td>
+            <td><%= link_to map_point.city + ', ' + map_point.country, map_point, style: 'color:#152238;' %></td>
             <td><%= map_point.latitude %></td>
             <td><%= map_point.longitude %></td>
             <td><%= map_point.start_date %></td>

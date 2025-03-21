@@ -21,12 +21,15 @@
                             </div>
                             <span class="title">.zsh</span>
                         </div>
-                        <div class="message" id="current-user" data-user-email="<%= current_user.email %>">
-                            <span class='prompt'><span class='user'>rails</span><span class="at">@</span><span
-                                    class="path">veast</span>><span
-                                    class="caret">$</span></span>
-                            <span class="typed"></span>
-                        </div>
+
+                        <% if map_point.user == current_user %>
+                            <div class="message" id="current-user" data-user-email="<%= current_user.email %>">
+                                <span class='prompt'><span class='user'>rails</span><span class="at">@</span><span
+                                        class="path">veast</span>><span
+                                        class="caret">$</span></span>
+                                <span class="typed"></span>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
             </section>
