@@ -16,8 +16,8 @@ export default class extends Controller {
     const userEmail = userElement.dataset.userEmail; // Access the user ID
     new Typed('.typed', {
       strings: [
-        "2025-03-12<br/>" +
-        "><span class='caret'>$</span>" + userEmail + "It was hard to find a username but I thing Hubato fits<br/>" +
+        "2025-03-22<br/>" +
+        "><span class='caret'>$</span> " + userEmail + " It was hard to find a username but I thing Hubato fits<br/>" +
         "><span class='caret'>$</span> It was hard to find a username but I thing Hubato fits<br/>" +
         "><span class='caret'>$</span> I recently grew an interest in mapping objects<br/>" +
         "><span class='caret'>$</span> I also had a backlog project to discover ruby and rails applications<br/>" +

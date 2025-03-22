@@ -48,7 +48,7 @@ export default class extends Controller {
 
     mapPoints.forEach((point) => {
       const marker = this.L.marker([point.latitude, point.longitude], { icon: officeIcon }).addTo(this.map);
-      marker.bindPopup(`<strong>${point.country}</strong><br>${point.city}`);
+      marker.bindPopup(`<h4>${point.city}, ${point.country}</h4>${point.short_description}`);
     });
 
     const mapElement = document.getElementById('map-container');

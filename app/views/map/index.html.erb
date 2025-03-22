@@ -20,7 +20,9 @@
     const mapPoints = <%= @map_points.to_json.html_safe %>;
     </script>
 
-    <%= link_to "New map point", new_map_point_path, class: "btn btn-secondary btn-sm" %>
+    <%= link_to "New Map Point", new_map_point_path, class: "btn btn-secondary btn-sm" %>
+
+    <%= link_to 'Go to Map Points', map_points_path, class: "btn btn-outline-dark btn-sm float-end" %>
 
     <!-- Leaflet JS loaded after CSS -->
     <script src="https://unpkg.com/[email protected]/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
