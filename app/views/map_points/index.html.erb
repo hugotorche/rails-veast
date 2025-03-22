@@ -13,16 +13,11 @@
         <th> </th>
       </tr>
     </thead>
-    <style>
-  .table-group-divider {
-    border-top: 2px solid #B8860B; /* Thicker golden border */
-  }
-</style>
     <tbody class="table-group-divider">
-      <% @map_points.each do |map_point| %>
+      <% @map_points_sorted.each do |map_point| %>
         <% if map_point.user == current_user %>
           <tr>
-            <td><%= link_to map_point.city + ', ' + map_point.country, map_point, style: 'color:#152238;' %></td>
+            <td><%= link_to "#{map_point.city}, #{map_point.country}", map_point, class: "point-name-link" %></td>
             <td><%= map_point.latitude %></td>
             <td><%= map_point.longitude %></td>
             <td><%= map_point.start_date %></td>

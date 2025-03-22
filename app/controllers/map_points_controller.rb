@@ -6,6 +6,7 @@ class MapPointsController < ApplicationController
   # GET /map_points or /map_points.json
   def index
     @map_points = MapPoint.all
+    @map_points_sorted = MapPoint.all.order(start_date: :asc)
   end
 
   # GET /map_points/1 or /map_points/1.json

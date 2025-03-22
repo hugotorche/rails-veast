@@ -63,8 +63,7 @@ export default class extends Controller {
         tyoMarker.bindPopup(htmlContent);
       });
     
-    const sortedPoints = mapPoints.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-    const pointList = sortedPoints.map(point => [point.latitude, point.longitude]);
+    const pointList = mapPoints.map(point => [point.latitude, point.longitude]);
 
     const polyline = this.L.polyline(pointList, {
       color: '#B8860B',

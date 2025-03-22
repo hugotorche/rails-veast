@@ -1,0 +1,11 @@
+.point-name-link {
+    color: #152238;
+    }
+  
+.point-name-link:hover {
+color: #af9146;
+    }
+
+.table-group-divider {
+    border-top: 2px solid #152238;
+    }
