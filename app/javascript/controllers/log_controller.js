@@ -13,10 +13,10 @@ export default class extends Controller {
 
   initTyped() {
     const userElement = document.getElementById('current-user');
-    const userEmail = userElement.dataset.userEmail; // Access the user ID
+    const userEmail = userElement.dataset.userEmail;
     new Typed('.typed', {
       strings: [
-        "2025-03-22<br/>" +
+        "2025-03-24<br/>" +
         "><span class='caret'>$</span> " + userEmail + " It was hard to find a username but I thing Hubato fits<br/>" +
         "><span class='caret'>$</span> It was hard to find a username but I thing Hubato fits<br/>" +
         "><span class='caret'>$</span> I recently grew an interest in mapping objects<br/>" +
@@ -25,7 +25,7 @@ export default class extends Controller {
         "><span class='caret'>$</span> This time I won't plan a 3rd version but if I do I will log<br/>" +
         "<form>><span class='caret'>$</span><input type='text' name='response'/></form>"
       ],
-      showCursor: false,
+      showCursor: false, 
       cursorChar: '_',
       autoInsertCss: true,
       typeSpeed: 50,

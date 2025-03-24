@@ -24,7 +24,7 @@
 
   #terminal .terminal {
     position: absolute;
-    background: #ffffd4;
+    background: #fefad9;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -49,7 +49,7 @@
     cursor: grabbing;
   }
   #terminal .terminal .window-title {
-    background: #2f1b0c;
+    background: #1d2a35;
     width: calc(100% - 0px);
     height: 7%;
     text-align: center;
@@ -123,7 +123,7 @@
     font-family: "Source Code Pro", monospace;
     width: 95%;
     margin: auto;
-    padding: 1.5vh 0 0;
+    padding: 0.13vh 0 0;
     z-index: 999;
   }
   #terminal .message span {
@@ -149,6 +149,9 @@
     letter-spacing: 0.045em;
     margin-bottom: 1em;
     margin-left: 7px;
+  }
+  #terminal .message .typed {
+    line-height: 2.08em;
   }
   #terminal .message .typed-cursor {
     color: #ffffff;
