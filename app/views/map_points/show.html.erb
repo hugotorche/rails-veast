@@ -10,10 +10,11 @@
 
     <p class="col-md-8 fs-5"><%= @map_point.short_description %></p>
     <div>
-      <%= link_to "Edit", edit_map_point_path(@map_point), class: "btn btn-outline-primary" %>&nbsp;&nbsp;
-      <%= link_to "Back to Map Points", map_points_path, class: "btn btn-outline-dark" %>
+      <%= link_to "Back to Map", map_path, class: "btn btn-outline-dark" %>&nbsp;&nbsp;
+      <%= link_to "Back to Points", map_points_path, class: "btn btn-outline-dark" %>
       </br></br>
-      <%= button_to "Delete", @map_point, method: :delete, class: "btn btn-outline-danger" %>
+      <%= link_to "Edit", edit_map_point_path(@map_point), class: "btn btn-outline-primary" %>&nbsp;&nbsp;
+      <%= link_to 'Delete', @map_point, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
     </div>
 
   </div>

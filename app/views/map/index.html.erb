@@ -12,13 +12,10 @@
         data-map-center-value="[46.204391, 6.143158]"
         data-map-zoom-value="3"
         data-pop-img="<%= asset_path('pop/zombie.jpeg') %>"
+        data-map-points="<%= @map_points.to_json %>"
         class="leaflet-map-container"
         style="height: 600px; width: 100%; margin: 8px auto; margin-bottom: 22px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);">
     </div>
-    
-    <script>
-    const mapPoints = <%= @map_points.to_json.html_safe %>;
-    </script>
 
     <%= link_to "New Map Point", new_map_point_path, class: "btn btn-secondary btn-sm" %>
 

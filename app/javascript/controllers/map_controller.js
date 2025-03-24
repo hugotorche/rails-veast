@@ -46,13 +46,15 @@ export default class extends Controller {
       iconSize: [16, 16],
     });
 
+    const mapElement = document.getElementById('map-container');
+    const mapPoints = JSON.parse(mapElement.dataset.mapPoints);
+    const src = mapElement.dataset.popImg;
+
     mapPoints.forEach((point) => {
       const marker = this.L.marker([point.latitude, point.longitude], { icon: officeIcon }).addTo(this.map);
       marker.bindPopup(`<h4>${point.city}, ${point.country}</h4>${point.short_description}`);
     });
-
-    const mapElement = document.getElementById('map-container');
-    const src = mapElement.dataset.popImg;
+    
     const popupContent = document.createElement("div");
     popupContent.innerHTML = "<img src='" + src + "' style='width: 150px; height: auto;'><br>"
                               + "<a target='_blank' href='" + src + "'>See the image</a>";
