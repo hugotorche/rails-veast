@@ -138,11 +138,11 @@
     border-bottom: 1px dotted rgba(255, 255, 255, 0.75);
   }
   #terminal .message form input {
-    color: rgba(255, 255, 255, 0.75);
+    color: #03224c;
     background: transparent;
     border: none;
     outline: none;
-    caret-color: #50cd70;
+    caret-color: #03224c;
     font-size: 100%;
     font-weight: 300;
     line-height: 1.5;

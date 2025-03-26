@@ -1,20 +1,49 @@
 import { Controller } from '@hotwired/stimulus';
 import Typed from "typed.js";
-import Sortable from "sortablejs";
+import Sortable from "sortablejs"; 
 
 export default class extends Controller {
   static targets = ["terminal"];
 
   connect() {
-    this.initTyped();
+    this.InitTyped();
+    this.LogTyped();
     this.makeTerminalDraggable();
     this.makeTerminalsSortable();
   }
 
-  initTyped() {
+  InitTyped() {
+    new Typed('.typed', {
+      strings: [
+        "Enchanté!<br/>" +
+        "><span class='caret'>$</span> Lately I grew an interest in Ruby on Rails and Geographical objects<br/>" +
+        "><span class='caret'>$</span> If I was a hiring manager I would ask for a map instead of a resume<br/>" +
+        "><span class='caret'>$</span> Mine is in Imap section but where is yours?<br/>" +
+        "><span class='caret'>$</span> First you have to log in into the app with a username and a password<br/>" +
+        "><span class='caret'>$</span> Then you can add points to draw your map and showcase your pathway<br/>" +
+        "><span class='caret'>$</span> If I could only keep one thing about life I think it would be travel<br/>" +
+        "<form>><span class='caret'>$</span><input type='text' name='response'/></form>"
+      ],
+      showCursor: false, 
+      cursorChar: '_',
+      autoInsertCss: true,
+      typeSpeed: 50,
+      startDelay: 50,
+      loop: false,
+      onStart: () => $('.message form').hide(),
+      onStop: () => $('.message form').show(),
+      onTypingResumed: () => $('.message form').hide(),
+      onTypingPaused: () => $('.message form').show(),
+      onComplete: () => $('.message form').show(),
+      onStringTyped: (pos, self) => {$('.message form').show();}
+    });
+    $('.message form').hide();
+  };
+
+  LogTyped() {
     const userElement = document.getElementById('current-user');
     const userEmail = userElement.dataset.userEmail;
-    new Typed('.typed', {
+    new Typed('.logtyped', {
       strings: [
         "2025-03-24<br/>" +
         "><span class='caret'>$</span> " + userEmail + " It was hard to find a username but I thing Hubato fits<br/>" +
