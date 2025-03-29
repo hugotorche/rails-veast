@@ -18,7 +18,7 @@ export default class extends Controller {
         "Enchanté!<br/>" +
         "><span class='caret'>$</span> Lately I grew an interest in Ruby on Rails and Geographical objects<br/>" +
         "><span class='caret'>$</span> If I was a hiring manager I would ask for a map instead of a resume<br/>" +
-        "><span class='caret'>$</span> Mine is in Imap section but where is yours?<br/>" +
+        "><span class='caret'>$</span> Mine is in Demo section but where is yours?<br/>" +
         "><span class='caret'>$</span> First you have to log in into the app with a username and a password<br/>" +
         "><span class='caret'>$</span> Then you can add points to draw your map and showcase your pathway<br/>" +
         "><span class='caret'>$</span> If I could only keep one thing about life I think it would be travel<br/>" +
