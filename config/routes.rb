@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :map_points
   # get "home/index"
-  get '/myapp/map', to: 'map#index'
+  get '/map', to: 'map#index'
   get '/map/demo', to: 'map#demo'
   get "home/log"
   root "home#log"
