@@ -16,7 +16,7 @@ class MapPointsController < ApplicationController
   # GET /map_points/new
   def new
     #@map_point = MapPoint.new
-    @map_point = current_user.map_points.build
+    @map_point = current_user.map_points.build map_point_params
   end
 
   # GET /map_points/1/edit
@@ -75,6 +75,7 @@ class MapPointsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def map_point_params
-      params.expect(map_point: [ :country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description, :user_id ])
+      #params.expect(map_point: [ :country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description, :user_id ])
+      params.fetch(:map_point, {}).permit(:country, :city, :latitude, :longitude, :start_date, :end_date, :short_description, :long_description, :user_id)
     end
 end
