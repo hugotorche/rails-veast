@@ -12,8 +12,11 @@
   <% end %>
 
   <div class="mb-3">
-    <% form.label :country, style: "display: block" %>
-    <%= form.text_field :country, class:"form-control", placeholder:"Country" %>
+    <%= form.select :country, map_point.countries.invert, { priority_countries: ["Denmark"], prompt: "Select a Country" }, { class: "form-select", id: "country-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.select :city, map_point.cities, { priority_countries: ["Copenhagen"], prompt: "Select a City" }, { class: "form-select", id: "country-select" } %>
   </div>
 
   <div class="mb-3">
