@@ -20,6 +20,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 gem 'city-state'
+gem 'geocoder', '~> 1.8', '>= 1.8.5'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"

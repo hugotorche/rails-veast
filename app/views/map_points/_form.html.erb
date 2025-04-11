@@ -15,25 +15,25 @@
     <div data-controller="form-element">
       <%= form.button "Validate", formaction: new_map_point_path, formmethod: :get, data: { form_element_target: "remoteBtn", turbo_frame: :cs_select } %>
       <div class="mb-3">
-        <%= form.select :country, map_point.countries.invert, { priority_countries: ["Denmark"], prompt: "Select a Country", include_blank: true}, { class: "form-select", data: {action: "change->form-element#autosubmit"} } %>
+        <%= form.select :country, map_point.countries.invert.sort, { prompt: "Select a Country" }, { class: "form-select", data: {action: "change->form-element#autosubmit"} } %>
       </div>
 
       <div class="mb-3">
-        <%= form.select :city, map_point.cities, { priority_countries: ["Copenhagen"], prompt: "Select a City", include_blank: true }, { class: "form-select" } %>
+        <%= form.select :city, map_point.cities, { prompt: "Select a City" }, { class: "form-select", data: {action: "change->form-element#autosubmit" } } %>
       </div>
     </div>
+  
+    <h8>Coordinates</h8>
+    <div class="mb-3">
+      <% form.label :latitude, style: "display: block" %>
+      <%= form.number_field :latitude, step: "any", class: "form-control", placeholder: "Latitude", value: @map_point.latitude %>
+    </div>
+    <div class="mb-3">
+      <% form.label :longitude, style: "display: block" %>
+      <%= form.number_field :longitude, step: "any", class: "form-control", placeholder: "Longitude", value: @map_point.longitude %>
+    </div>
   <% end %>
-
-  <div class="mb-3">
-    <% form.label :latitude, style: "display: block" %>
-    <%= form.number_field :latitude, step: "any", class:"form-control", placeholder:"Latitude" %>
-  </div>
-
-  <div class="mb-3">
-    <% form.label :longitude, style: "display: block" %>
-    <%= form.number_field :longitude, step: "any", class:"form-control", placeholder:"Longitude" %>
-  </div>
-
+  
   <div class="mb-3">
     <%= form.label :start_date, style: "display: block" %>
     <%= form.date_field :start_date, class:"form-control" %>

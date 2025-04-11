@@ -9,13 +9,29 @@ class MapPoint < ApplicationRecord
     def cities
         states = CS.states(country)
         all_cities = states.keys.flat_map { |state| CS.cities(state, country) }
-        all_cities || []
+        (all_cities || []).sort
     end
     def country_label
         if country.length == 2
             countries[country]
         else
             country
+        end
+    end
+    def latitude
+        result = Geocoder.search(city).first
+        if result && result.coordinates
+            result.coordinates[0]
+        else
+            ''
+        end
+    end
+    def longitude
+        result = Geocoder.search(city).first
+        if result && result.coordinates
+            result.coordinates[1]
+        else
+            ''
         end
     end
 end
