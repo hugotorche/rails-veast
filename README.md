@@ -1,23 +1,14 @@
 # README
 
-This is Veast, my first Rails app.
-
-Things you may want to cover:
+This is Veast, my first Rails app. It features a Leaflet JS map and CRUD table for map points. It also includes user management with devise gem and a terminal visual for fun!
 
 * Ruby version
+3.2.2
 
-* System dependencies
+* Database
+Map Points
+User
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployment
+Heroku
+https://railsveast-648fe0bd4b67.herokuapp.com/map/demo
