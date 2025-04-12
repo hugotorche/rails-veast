@@ -6,7 +6,7 @@ class MapController < ApplicationController
     end
 
     def demo
-      @map_points_2 = MapPoint.where(user_id: 2).order(start_date: :asc)
+      @map_points_2 = MapPoint.where(user_id: 1).order(start_date: :asc)
     end
 
 end
