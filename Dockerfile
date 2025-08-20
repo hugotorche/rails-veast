@@ -5,8 +5,15 @@ WORKDIR /rails
 
 RUN apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-      build-essential libpq-dev curl libjemalloc2 libvips && \
-    rm -rf /var/lib/apt/lists/*
+      build-essential \
+      libpq-dev \
+      postgresql-client \
+      node-gyp \
+      python-is-python3 \
+      curl \
+      libjemalloc2 \
+      libvips \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV RAILS_ENV=production \
     BUNDLE_DEPLOYMENT=1 \
@@ -35,7 +42,7 @@ COPY --from=build /rails /rails
 
 RUN groupadd --system --gid 1000 rails && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
-    chown -R rails:rails db log storage tmp
+    chown -R rails:rails db log storage tmp || true
 
 USER 1000:1000
 
