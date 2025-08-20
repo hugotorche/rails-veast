@@ -33,9 +33,9 @@ export default class extends Controller {
 
     this.L.control.zoom({ position: 'topright' }).addTo(this.map)
 
-    this.L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
+    this.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxZoom: 20
+      maxZoom: 19
     }).addTo(this.map);
   }
 
