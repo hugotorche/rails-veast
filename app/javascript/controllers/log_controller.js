@@ -15,13 +15,18 @@ export default class extends Controller {
   InitTyped() {
     new Typed('.typed', {
       strings: [
-        "Enchanté!<br/>" +
+        "Hoi!<br/>" +
         "><span class='caret'>$</span> Lately I grew an interest in Ruby on Rails and Geographical objects<br/>" +
-        "><span class='caret'>$</span> If I was a hiring manager I would ask for a map instead of a resume<br/>" +
-        "><span class='caret'>$</span> Mine is in Demo section but where is yours?<br/>" +
+        "><span class='caret'>$</span> This app is a fun project where you can add points into a map<br/>" +
+        "><span class='caret'>$</span> Please refer to the demo to see an example, quite a unique path right?<br/>" +
         "><span class='caret'>$</span> First you have to log in into the app with a username and a password<br/>" +
-        "><span class='caret'>$</span> Then you can add points to draw your map and showcase your pathway<br/>" +
-        "><span class='caret'>$</span> If I could only keep one thing about life I think it would be travel<br/>" +
+        "><span class='caret'>$</span> Then you can add points, filling each form, to draw your map<br/>" +
+        "><span class='caret'>$</span> I would be happy to see your map, you can send it to me on LinkedIn!<br/>" +
+        "><span class='caret'>$</span> Below is my contact info:<br/>" +
+        "><span class='caret'>$</span> export linkedin==linkedin.com/hugotorche<br/>" +
+        "><span class='caret'>$</span> export github==github.com/hugotorche<br/>" +
+        "><span class='caret'>$</span> export medium==medium.com/@hugotorche<br/>" +
+        "><span class='caret'>$</span> Thank you!<br/>" +
         "<form>><span class='caret'>$</span><input type='text' name='response'/></form>"
       ],
       showCursor: false, 
