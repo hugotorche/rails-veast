@@ -1,4 +1,3 @@
-require_relative '../config/initializers/city_state_patch'
 require_relative "boot"
 
 require "rails/all"
@@ -6,6 +5,7 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+require_relative '../config/initializers/city_state_patch'
 
 module Myapp
   class Application < Rails::Application
