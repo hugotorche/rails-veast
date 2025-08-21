@@ -1,7 +1,7 @@
+require_relative '../config/initializers/city_state_patch'
 require_relative "boot"
 
 require "rails/all"
-require_relative '../config/initializers/city_state_patch'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
