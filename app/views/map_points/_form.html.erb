@@ -15,10 +15,12 @@
     <div data-controller="form-element">
       <%= form.button "Validate", formaction: new_map_point_path, formmethod: :get, data: { form_element_target: "remoteBtn", turbo_frame: :cs_select } %>
       <div class="mb-3">
+        <%= form.label :country, style: "display: block" %>
         <%= form.select :country, map_point.countries.invert.sort, { prompt: "Select a Country" }, { class: "form-select", data: {action: "change->form-element#autosubmit"} } %>
       </div>
-
+      <%= map_point.test_text %>
       <div class="mb-3">
+        <%= form.label :city, style: "display: block" %>
         <%= form.select :city, map_point.cities, { prompt: "Select a City" }, { class: "form-select", data: {action: "change->form-element#autosubmit" } } %>
       </div>
     </div>

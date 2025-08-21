@@ -6,6 +6,9 @@ class MapPoint < ApplicationRecord
     def countries
         CS.countries.with_indifferent_access
     end
+    def test_text
+        CS.cities('82', 'DK')[0]
+    end
     def cities
         states = CS.states(country)
         all_cities = states.keys.flat_map { |state| CS.cities(state, country) }
