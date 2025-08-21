@@ -150,10 +150,12 @@
     margin-bottom: 1em;
     margin-left: 7px;
   }
-  #terminal .message .typed {
+  #terminal .message .typed,
+  #terminal .message .logtyped {
     line-height: 2.08em;
   }
-  #terminal .message .typed-cursor {
+  #terminal .message .typed-cursor,
+  #terminal .message .logtyped-cursor {
     color: #ffffff;
     position: absolute;
     margin-left: 5px;

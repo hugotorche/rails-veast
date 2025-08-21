@@ -13,6 +13,8 @@ export default class extends Controller {
   }
 
   InitTyped() {
+    const typedEl = this.element.querySelector('.typed');
+    if (!typedEl) return; // no element → don't start
     new Typed('.typed', {
       strings: [
         "Hoi!<br/>" +
@@ -46,17 +48,19 @@ export default class extends Controller {
   };
 
   LogTyped() {
-    const userElement = document.getElementById('current-user');
-    const userEmail = userElement.dataset.userEmail;
+    const logTypedEl = this.element.querySelector('.logtyped');
+    if (!logTypedEl) return;
+    const userEmail = logTypedEl.dataset.userEmail; // from id="current-user" data attribute
     new Typed('.logtyped', {
       strings: [
-        "2025-03-24<br/>" +
-        "><span class='caret'>$</span> " + userEmail + " It was hard to find a username but I thing Hubato fits<br/>" +
-        "><span class='caret'>$</span> It was hard to find a username but I thing Hubato fits<br/>" +
-        "><span class='caret'>$</span> I recently grew an interest in mapping objects<br/>" +
-        "><span class='caret'>$</span> I also had a backlog project to discover ruby and rails applications<br/>" +
-        "><span class='caret'>$</span> It is a great occasion for a fresh review of my portfolio<br/>" +
-        "><span class='caret'>$</span> This time I won't plan a 3rd version but if I do I will log<br/>" +
+        "Hello " + userEmail + "!<br/>" +
+        "><span class='caret'>$</span> Congratulations, you have successfully logged in<br/>" +
+        "><span class='caret'>$</span> You are now ready to add points and to draw your own map<br/>" +
+        "><span class='caret'>$</span> Please refer to the demo to see an example, quite a unique path right?<br/>" +
+        "><span class='caret'>$</span> You can use the points tab to see all your entries in details<br/>" +
+        "><span class='caret'>$</span> The map default zoom is fixed, so please use the buttons on the right<br/>" +
+        "><span class='caret'>$</span> I would be happy to see your map, you can send it to me on LinkedIn!<br/>" +
+        "><span class='caret'>$</span> Thank you!<br/>" +
         "<form>><span class='caret'>$</span><input type='text' name='response'/></form>"
       ],
       showCursor: false, 
